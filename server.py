@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask # 연습용
 import random
 
 app = Flask(__name__)
