@@ -4,7 +4,7 @@ import random
 app = Flask(__name__)
 
 
-topics = [ # 이 부분은 데이터베이스를 이용해야한다.
+topics = [ # 이 부분은 원래 데이터베이스를 이용해야한다.
       {'id':1, 'title': 'html', 'body': 'html is....'},
       {'id':2, 'title': 'css', 'body': 'css is....'},
       {'id':3, 'title': 'javascript', 'body': 'javascript is....'}
@@ -38,7 +38,7 @@ def index():
 def create():
    return 'Create'
 
-@app.route('/read/<int:id>/') #int:id -> id를 정수라는 것으로 지정
+@app.route('/read/<int:id>/') #int:id -> id를 정수로 지정
 def read(id):
    title = ''
    body = ''
