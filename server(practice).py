@@ -4,22 +4,25 @@ import random
 app = Flask(__name__)
 
 
-topics = [ # 이 부분은 원래 데이터베이스를 이용해야한다.
+topics = [ # 이 부분은 데이터베이스를 이용해야한다.
       {'id':1, 'title': 'html', 'body': 'html is....'},
       {'id':2, 'title': 'css', 'body': 'css is....'},
       {'id':3, 'title': 'javascript', 'body': 'javascript is....'}
 ]
 
-def template(contents, content): #중복제거 1
+def template(contents, content): #중복제거, ul은순서가 없을 때 사용한다. 
    return f''' <!doctype html>
    <html>
       <body>
       <h1><a href="/">WEB</a></h1>
       <ol>
-          {contents} 
+          {contents}
       </ol>
-      {content}
-   </body>
+      {content} 
+      <ul> 
+         <li><a href ="/create/">create<a/></li>
+      </ul>
+   </body> 
 </html>
    '''
 
@@ -36,9 +39,16 @@ def index():
 
 @app.route('/create/')
 def create():
-   return 'Create'
+   content = '''
+    <form action ="/create/" method = "POST">
+         <p><input type ="text" name = "title" placeholder = "title"></p>
+         <p><textarea name = "body" placeholder = "body"></textarea></p>
+         <p><input type = "submit" value = "create"></p>
+   </form>
+   '''
+   return template(getContents(), content)
 
-@app.route('/read/<int:id>/') #int:id -> id를 정수로 지정
+@app.route('/read/<int:id>/') #int:id -> id를 정수라는 것으로 지정
 def read(id):
    title = ''
    body = ''
