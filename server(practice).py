@@ -1,9 +1,9 @@
-from flask import Flask #연습용
+from flask import Flask, request, redirect
 import random
 
 app = Flask(__name__)
 
-
+nextId = 4 
 topics = [ # 이 부분은 데이터베이스를 이용해야한다.
       {'id':1, 'title': 'html', 'body': 'html is....'},
       {'id':2, 'title': 'css', 'body': 'css is....'},
@@ -37,16 +37,27 @@ def index():
    return template(getContents(), '<h2>Welcome</h2>Hello, WEB')
    
 
-@app.route('/create/')
+@app.route('/create/', methods = ['GET','POST'])
 def create():
-   content = '''
-    <form action ="/create/" method = "POST">
-         <p><input type ="text" name = "title" placeholder = "title"></p>
-         <p><textarea name = "body" placeholder = "body"></textarea></p>
-         <p><input type = "submit" value = "create"></p>
-   </form>
-   '''
-   return template(getContents(), content)
+   if(request.method == 'GET'):
+      content = '''
+      <form action ="/create/" method = "POST">
+            <p><input type ="text" name = "title" placeholder = "title"></p>
+            <p><textarea name = "body" placeholder = "body"></textarea></p>
+            <p><input type = "submit" value = "create"></p>
+      </form>
+      '''
+      return template(getContents(), content)
+
+   elif request.method == 'POST':
+      global nextId #nextId를 전역변수로 지정
+      title = request.form['title']
+      body = request.form['body']
+      newTopic = {'id': nextId, 'title': title, 'body': body}
+      topics.append(newTopic) #데이터 추가
+      url = '/read/'+str(nextId)+'/' #nextId를 문자열로, 이유:nextId를 문자열과 결합해야하니까
+      nextId = nextId + 1 
+      return redirect(url)
 
 @app.route('/read/<int:id>/') #int:id -> id를 정수라는 것으로 지정
 def read(id):
