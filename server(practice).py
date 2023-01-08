@@ -10,7 +10,12 @@ topics = [ # 이 부분은 데이터베이스를 이용해야한다.
       {'id':3, 'title': 'javascript', 'body': 'javascript is....'}
 ]
 
-def template(contents, content): #중복제거, ul은순서가 없을 때 사용한다. 
+def template(contents, content, id = None): #중복제거, ul은순서가 없을 때 사용한다. 
+   contextUI = ''
+   if (id != None):
+      contextUI = f'''
+         <li><a href ="/update/{id}/">update</a></li>
+      '''
    return f''' <!doctype html>
    <html>
       <body>
@@ -21,6 +26,7 @@ def template(contents, content): #중복제거, ul은순서가 없을 때 사용
       {content} 
       <ul> 
          <li><a href ="/create/">create<a/></li>
+         {contextUI}
       </ul>
    </body> 
 </html>
@@ -59,6 +65,38 @@ def create():
       nextId = nextId + 1 
       return redirect(url)
 
+
+@app.route('/update/<int:id>/', methods = ['GET','POST'])
+def update(id):
+   if(request.method == 'GET'):
+      title = ''
+      body = ''
+      for topic in topics: #여기서 조회를 하고
+         if id == topic['id']: #그 토픽과 토픽id가 일치하면
+            title = topic['title'] #그것을 타이틀과 바디로 지정
+            body = topic['body']
+            break
+      content = f'''
+         <form action ="/update/{id}/" method = "POST">
+               <p><input type ="text" name = "title" placeholder = "title" value = "{title}"></p>
+               <p><textarea name = "body" placeholder = "body">{body}</textarea></p>
+               <p><input type = "submit" value = "update"></p>
+         </form>
+      '''
+      return template(getContents(), content)
+
+   elif request.method == 'POST':
+      global nextId #nextId를 전역변수로 지정
+      title = request.form['title']
+      body = request.form['body']
+      for topic in topics:
+         if id == topic['id']:
+            topic['title'] = title
+            topic['body'] = body
+            break
+      url = '/read/'+str(id)+'/' 
+      return redirect(url)
+
 @app.route('/read/<int:id>/') #int:id -> id를 정수라는 것으로 지정
 def read(id):
    title = ''
@@ -69,7 +107,7 @@ def read(id):
          body = topic['body']
          break
    print(title, body)
-   return template(getContents(), f'<h2>{title}</h2>{body}')
+   return template(getContents(), f'<h2>{title}</h2>{body}', id)
 
 
 app.run(port = 5001, debug = True)
