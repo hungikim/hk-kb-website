@@ -666,5 +666,24 @@
         background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
     }
         
-    </style></head><body><article id="f60e179d-dfee-45fc-9f5f-15fb8a762818" class="page serif"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_8.png" style="object-position:center 70%"/><h1 class="page-title">Website</h1></header><div class="page-body"><p id="1e71a642-50ef-4bc8-976f-0dad81fecd2f" class="block-color-gray">삶의 모든 것을 한 곳에서 정리하세요.</p><figure id="1b60a390-c7fa-43a8-bf20-426d43f4afdb" class="link-to-page"><a href="https://www.notion.so/1b60a390c7fa43a8bf20426d43f4afdb">제목 없는 데이터베이스</a></figure><div id="29923e0a-c494-432c-a4f3-cb83ff02c532" class="column-list"><div id="b87813b3-b6e1-46c6-ad48-b8266996c2b3" style="width:62.5%" class="column"><h2 id="dc5f2ae4-ae9d-4c31-9d7e-b0773db6fe61" class="">일상</h2><figure id="4763aa0e-6617-4fc8-b959-6e2200df8b29" class="link-to-page"><a href="https://www.notion.so/4763aa0e66174fc8b9596e2200df8b29">제목 없음</a></figure><figure id="99993f34-77c6-4e21-abd3-c57b3ad3cfc5" class="link-to-page"><a href="https://www.notion.so/99993f3477c64e21abd3c57b3ad3cfc5"><span class="icon">🎬</span>영화 리스트</a></figure><hr id="e5185e63-2a08-4bb2-a353-6167afcd54aa"/><figure id="2cbb65c9-0a10-4b5a-bf95-5e5d9d38405d" class="link-to-page"><a href="https://www.notion.so/2cbb65c90a104b5abf955e5d9d38405d"><span class="icon">🍗</span>레시피</a></figure></div><div id="2ddf5613-489e-4b6c-b09a-4fc0826c09ea" style="width:37.49999999999999%" class="column"><h2 id="ad687281-7eae-4bc5-912b-dba39d1a6eb2" class="">라이프</h2><hr id="03dab66e-43a2-48f7-b418-fd26f59cc913"/><figure id="a393edda-fd75-4cd6-947b-ede827264335" class="link-to-page"><a href="https://www.notion.so/a393eddafd754cd6947bede827264335"><span class="icon">🌅</span>연간 목표</a></figure><figure id="bad77b90-ea76-4611-be0e-cc314f2418ba" class="link-to-page"><a href="https://www.notion.so/bad77b90ea764611be0ecc314f2418ba"><span class="icon">✈️</span>여행 계획</a></figure><p id="e3c1fe5b-64b0-4308-8f6b-7a2d2aa34c13" class="">
-    </p></div></div><figure id="31620f58-d6f0-47e3-b059-f5d97ea02e8b" class="link-to-page"><a href="https://www.notion.so/31620f58d6f047e3b059f5d97ea02e8b"><span class="icon">✔️</span>작업 목록</a></figure></div></article></body></html>
+    </style></head><body><article id="f60e179d-dfee-45fc-9f5f-15fb8a762818" class="page serif"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_8.png" style="object-position:center 70%"/><h1 class="page-title">Website</h1></header><div class="page-body"><p id="1e71a642-50ef-4bc8-976f-0dad81fecd2f" class="block-color-gray">삶의 모든 것을 한 곳에서 정리하세요.</p><figure id="1b60a390-c7fa-43a8-bf20-426d43f4afdb" class="link-to-page">
+    <a href ="/user_form">회원 등록하기</a>
+    <a href ="/list">회원 확인</a>
+<!doctype html>
+<html>
+   <body>
+      <table border = 1>
+         <thead>
+            <td>Email</td>
+            <td>Name</td>
+         </thead>
+
+         {% for row in rows %}
+            <tr>
+               <td>{{row["email"]}}</td>
+               <td>{{row["name"]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+   </body>
+</html>
