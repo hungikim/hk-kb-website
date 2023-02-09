@@ -1,40 +1,60 @@
-from flask import Flask, render_template, request
-import sys
-import sqlite3 as sql
-application = Flask(__name__)
+from flask import Flask, render_template
+import random
 
-@application.route("/")
+app = Flask(__name__)
+
+topics = [ # type: List of Dictionaries (나중에 쓰기기능을 구현하게 되면 값들이 초기화 됨)
+      {'id':1, 'title': 'html', 'body': 'html is....'},
+      {'id':2, 'title': 'css', 'body': 'css is....'},
+      {'id':3, 'title': 'javascript', 'body': 'javascript is....'}
+]
+
+# Content to display when nothing is entered in the URI after the domain
+@app.route('/')
+def index(): # Display each topic in the topics list as links
+   liTags = ''
+   for topic in topics:
+      liTags = liTags + f'<li><a href = "/read/{topic["id"]}/">{topic["title"]}</a></li>' # use f-string to print strings with variables
+   return f''' <!doctype html>
+   <html>
+      <head>
+         <title>Board</title>
+      </head>
+      <body>
+      <h1 align="center"><a href="/">WELCOME</a></h1> <!-- Note: text within an 'a' tag is underlined -->
+      <ol>
+         {liTags}
+      </ol>
+      <h2>Welcome</h2>
+      Hello, Web
+   </body>
+</html>
+'''
+
+@app.route('/create/')
+def create():
+   return 'Create'
+
+@app.route('/read/<int:id>/') # int:id -> makes sure that the variable 'id' is an integer
+def read(id):
+   print(id)
+   return f'Read {id}'
+
+@app.route('/hello/')
 def hello():
-    return render_template("hello.html")
+   return render_template('hello.html')
 
-@application.route('/user_form')
-def new_user():
-    return render_template('user.html')
-
-@application.route('/user_info',methods = ['POST', 'GET'])
-def user_info():
-    if (request.method == 'POST'):
-        user_email = request.form['user_email']
-        user_name = request.form['user_name']
-
-    with sql.connect("database.db") as con:
-        cur = con.cursor()
-
-    cur.execute("INSERT INTO users (email, name) VALUES (?,?)",(user_email,user_name) )
-
-    msg = "Success"
-    return render_template("result.html",msg = msg)
-
-@application.route('/list')
+@app.route('/list/')
 def list():
-    con = sql.connect("database.db") #database.db파일에 접근.
-    con.row_factory = sql.Row
+   return render_template('list.html')
 
-    cur = con.cursor()
-    cur.execute("select * from users")
+@app.route('/result/')
+def result():
+   return render_template('result.html')
 
-    rows = cur.fetchall()
-    return render_template("list.html",rows = rows)
+@app.route('/user/')
+def user():
+   return render_template('user.html')
 
-if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+
+app.run(port = 5001, debug = True)
