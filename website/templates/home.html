@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}WELCOME{% endblock %}
+{% block content %}
+
+<ol>
+{% for topic in topics %}
+<li><a href="/read/{{ topic['id'] }}/">{{ topic["title"] }}</a></li>
+{% endfor %}
+</ol>
+<h2>Welcome</h2>
+Hello, Web<br>
+
+<img src="{{url_for('static', filename='shiba.jpg')}}" alt="shiba inu">
+{% endblock %}

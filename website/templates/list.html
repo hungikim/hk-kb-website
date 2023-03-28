@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<table border = 1>
+   <thead>
+      <td>Email</td>
+      <td>Name</td>
+   </thead>
+   {% for row in rows %}
+      <tr>
+         <td>{{row["email"]}}</td>
+         <td>{{row["name"]}}</td>
+      </tr>
+   {% endfor %}
+</table>
+{% endblock %}

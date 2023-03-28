@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}WEBSITE{% endblock %}</title>
+    </head>
+    <body>
+
+    <h1 align="center"><a href="/">W E L C O M E ʕ •́؈•̀) </a></h1>
+    <nav>
+        <a href="/">Log in</a>
+        <a href="{{url_for('auth.sign_up')}}">Sign up</a>
+        <a href="/">Contact Us</a>
+        <a href="/">About</a>
+    </nav>
+
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+    {% if msgs %}{% for category, msg in msgs %}
+    <div>{{ msg }}</div>
+    {% endfor %}{% endif %}
+    {% endwith %}
+    
+    {% block content %}
+    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}LOG IN{% endblock %}
+{% block content %}
+<form action = "{{url_for('auth.log_in')}}" method = "POST">
+   <h3>Log In</h3>
+   <label>
+      Email: <input type = "text" id = "user_email" name = "user_email"><br>
+   </label>
+   <label>
+      Password: <input type = "password" id = "user_pw" name = "user_pw"><br>
+   </label>
+   <input type = "submit" value = "submit"><br>
+</form>
+{% endblock %}
