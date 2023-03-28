@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, flash, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+from flask_login import login_user, login_required, logout_user
 
 auth = Blueprint('auth', __name__)
 
@@ -19,8 +20,8 @@ def sign_up():
       user = User.query.filter_by(email=user_email).first()
       if user:
           flash('Email already exists.', category='error')
-          return render_template('sign_up.html')
-      
+      elif user_pw != user_pw_confirm:
+          flash('Passwords don\'t match.', category='error') 
       else:
           user = User(email=user_email, name=user_name, password=generate_password_hash(user_pw, method='sha256'))
           db.session.add(user)
@@ -42,16 +43,16 @@ def log_in():
             # Check if passwords match
             if check_password_hash(user.password, user_pw):
                 flash('You are now logged in.', category='success')
+                login_user(user)
+                return redirect(url_for('views.home'))
             else: flash('Password does not match. Please check your password.',category='error')
         else: flash('The account with the email you type does not exist.', category='error')
-        
-        
              
-          
-       # do some check
-       
     return render_template('log_in.html')
 
 @auth.route('/log_out/')
+@login_required
 def log_out():
-   return "<div>Logged out</div>"
+   logout_user()
+   flash('You are not logged out.', category='success')
+   return redirect(url_for('views.home'))

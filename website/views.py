@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 
 views = Blueprint('views', __name__)
 
@@ -14,6 +15,10 @@ topics = [ # type: List of Dictionaries
 @views.route('/')
 def home():
     return render_template('home.html', topics = topics)
+
+@views.route('/about/')
+def about():
+   return render_template('about.html')
 
 @views.route('/read/<int:id>/')
 def read(id):

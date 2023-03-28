@@ -7,8 +7,7 @@
 <li><a href="/read/{{ topic['id'] }}/">{{ topic["title"] }}</a></li>
 {% endfor %}
 </ol>
-<h2>Welcome</h2>
-Hello, Web<br>
+<h2>Welcome {% if current_user.is_authenticated %}, current_user.name {% endif %} </h2>
 
 <img src="{{url_for('static', filename='shiba.jpg')}}" alt="shiba inu">
 {% endblock %}
