@@ -14,7 +14,6 @@ def sign_up():
       user_name = request.form.get('user_name')
       user_pw = request.form.get('user_pw')
       user_pw_confirm = request.form.get('user_pw_confirm')
-      print(user_email + user_name + user_pw + user_pw_confirm)
       
       # Check if the email already exists
       user = User.query.filter_by(email=user_email).first()
@@ -54,5 +53,5 @@ def log_in():
 @login_required
 def log_out():
    logout_user()
-   flash('You are not logged out.', category='success')
+   flash('You are now logged out.', category='success')
    return redirect(url_for('views.home'))

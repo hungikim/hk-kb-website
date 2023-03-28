@@ -1,20 +1,24 @@
-from flask import Blueprint, render_template
-from flask_login import login_required, current_user
+from flask import Blueprint, render_template, request, flash
+from flask_login import current_user
+from .models import Post
+from . import db
 
 views = Blueprint('views', __name__)
 
-#
-topics = [ # type: List of Dictionaries
-      {'id':1, 'title': 'html', 'body': 'html is....'},
-      {'id':2, 'title': 'css', 'body': 'css is....'},
-      {'id':3, 'title': 'javascript', 'body': 'javascript is....'}
-]
-#
-
 # Root Page
-@views.route('/')
+@views.route('/', methods = ['GET', 'POST'])
 def home():
-    return render_template('home.html', topics = topics)
+   if request.method == 'POST':
+      print("posting..")
+      post = request.form.get('post')
+      new_post = Post(text=post, user_id=current_user.id)
+      db.session.add(new_post)
+      db.session.commit()
+      flash('Your post has been created', category='success')
+   
+   posts = Post.query.all()
+
+   return render_template('home.html', posts=posts)
 
 @views.route('/about/')
 def about():

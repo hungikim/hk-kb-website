@@ -7,7 +7,39 @@
 <li><a href="/read/{{ topic['id'] }}/">{{ topic["title"] }}</a></li>
 {% endfor %}
 </ol>
-<h2>Welcome {% if current_user.is_authenticated %}, current_user.name {% endif %} </h2>
+<h2>Welcome{% if current_user.is_authenticated %}, {{current_user.name}} {% endif %} </h2>
+
+{# Create Post (Only if Logged in) #}
+<div>
+{% if current_user.is_authenticated %}
+<form method="POST">
+    <label><textarea name="post" id="post" required></textarea></label>
+    <div>
+        <button align="right" type="submit">Post</button>
+    </div>
+</form>
+{% else %}
+<p>You can create a post if you log in.</p>
+{% endif %}
+</div>
+
+{# Display User's Post #}
+<div>
+<h3>Posts:</h3>
+{% if current_user.posts != None %}
+<ul>
+    {% for post in current_user.posts %}
+    <li>
+        {{ post.text }}
+        {{ post.date }}
+        {{ post.author.name }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<h4>No posts to display</h4>
+{% endif %}
+</div>
 
 <img src="{{url_for('static', filename='shiba.jpg')}}" alt="shiba inu">
 {% endblock %}
