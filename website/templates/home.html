@@ -26,9 +26,9 @@
 {# Display User's Post #}
 <div>
 <h3>Posts:</h3>
-{% if current_user.posts != None %}
+{% if posts != None %}
 <ul>
-    {% for post in current_user.posts %}
+    {% for post in posts %}
     <li>
         {{ post.text }}
         {{ post.date }}
