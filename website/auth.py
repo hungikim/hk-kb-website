@@ -7,7 +7,7 @@ from flask_login import login_user, login_required, logout_user
 auth = Blueprint('auth', __name__)
 
 # Use both GET and POST because GET can only send URL while POST can take HTTP request 
-@auth.route('/sign_up/', methods = ['GET', 'POST'])
+@auth.route('/sign-up/', methods = ['GET', 'POST'])
 def sign_up():
    if request.method == 'POST':
       user_email = request.form.get('user_email')
@@ -30,7 +30,7 @@ def sign_up():
    
    return render_template('sign_up.html')
 
-@auth.route('/log_in/', methods = ['GET', 'POST'])
+@auth.route('/log-in/', methods = ['GET', 'POST'])
 def log_in():
     if request.method == 'POST':
         user_email = request.form.get('user_email')
@@ -49,7 +49,7 @@ def log_in():
              
     return render_template('log_in.html')
 
-@auth.route('/log_out/')
+@auth.route('/log-out/')
 @login_required
 def log_out():
    logout_user()

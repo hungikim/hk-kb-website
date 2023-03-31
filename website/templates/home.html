@@ -13,10 +13,8 @@
 <div>
 {% if current_user.is_authenticated %}
 <form method="POST">
-    <label><textarea name="post" id="post" required></textarea></label>
-    <div>
-        <button align="right" type="submit">Post</button>
-    </div>
+    <label><textarea name="post-text-area" class="text-area" required></textarea></label>
+    <button class="btn-post" type="submit">Post</button>
 </form>
 {% else %}
 <p>You can create a post if you log in.</p>
@@ -27,15 +25,19 @@
 <div>
 <h3>Posts:</h3>
 {% if posts != None %}
-<ul>
+<span>
     {% for post in posts %}
-    <li>
-        {{ post.text }}
-        {{ post.date }}
-        {{ post.author.name }}
-    </li>
+    <div class='post-wrapper'>
+        <p class='post-text'>{{ post.text }}</p>
+        Posted on {{ post.date }} By {{ post.author.name }}<br><br>
+        {% if current_user.is_authenticated %}{% if current_user.id == post.author.id %}
+        <div id="update-form-{{post.id}}"></div>
+        <button type="button" onclick="showUpdateForm({{post.id}})">Edit</button>
+        <button type="button" onclick="deletePost({{post.id}})">Remove</button>
+        {% endif %}{% endif %}
+    </div><br>
     {% endfor %}
-</ul>
+</span>
 {% else %}
 <h4>No posts to display</h4>
 {% endif %}

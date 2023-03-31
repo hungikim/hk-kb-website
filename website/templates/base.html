@@ -2,19 +2,21 @@
 <html>
     <head>
         <title>{% block title %}WEBSITE{% endblock %}</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css.css')}}">
     </head>
     <body>
 
-    <h1 align="center"><a href="/">W E L C O M E ʕ •́؈•̀) </a></h1>
-    <nav style="font-size:larger">
+    <h1 align="center" id="main-header">W E L C O M E</h1><hr>
+    <nav>
         {% if current_user.is_authenticated %}
-        <a href="{{url_for('auth.log_out')}}">Log out</a>
+        <a href="/log-out">Log out</a>
         {% else %}
-        <a href="{{url_for('auth.log_in')}}">Log in</a>
-        <a href="{{url_for('auth.sign_up')}}">Sign up</a>
+        <a href="/log-in">Log in</a>
+        <a href="/sign-up">Sign up</a>
         {% endif %}
-        <a href="{{url_for('views.about')}}">About</a>
-    </nav>
+        <a href="/about">About</a>
+        <button class="btn-dark-mode" onclick="darkMode()">Dark mode</a>
+    </nav><hr>
     
     <div>
     {% with msgs = get_flashed_messages(with_categories=true) %}
@@ -28,5 +30,7 @@
     {% block content %}
     {% endblock %}
     </div>
+
+    <script src="{{url_for('static', filename='js.js')}}"></script>
     </body>
 </html>

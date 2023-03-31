@@ -1,0 +1,47 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding: 1rem;
+    position: relative;
+}
+
+hr {
+
+}
+
+nav {
+    font-size: larger;
+    position: relative;
+    padding: 0.4rem;
+}
+
+.btn-dark-mode{
+    position: absolute;
+    right: 0;
+}
+
+.text-area{
+    width: 16rem;
+    height: 6rem;
+}
+
+.btn-post {
+
+}
+
+.post-text {
+    white-space: pre-line;
+}
+
+.post-wrapper {
+    border-style: solid;
+    border-width: thin;
+    width: 600px;
+    padding: 1em;
+}
+
+#update-form {
+    display: none;
+}
