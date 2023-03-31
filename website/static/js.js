@@ -36,7 +36,8 @@ function redirectToHome(){
 }
 
 function darkMode(){
-
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color= 'white';
 }
 
 document.getElementById("main-header").onclick = redirectToHome;

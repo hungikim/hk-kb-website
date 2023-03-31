@@ -25,6 +25,7 @@ nav {
 .text-area{
     width: 16rem;
     height: 6rem;
+    border-radius: 5px;
 }
 
 .btn-post {
@@ -38,6 +39,7 @@ nav {
 .post-wrapper {
     border-style: solid;
     border-width: thin;
+    border-radius: 5px;
     width: 600px;
     padding: 1em;
 }
