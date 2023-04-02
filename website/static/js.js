@@ -31,9 +31,11 @@ function updatePost(postId){
     });
 }
 
-function redirectToHome(){
-    window.location.href = '/';
-}
+function redirectToHome(){ window.location.href = '/'; }
+function redirectToLogIn(){ window.location.href = '/log-in/'; }
+function redirectToSignUp(){ window.location.href = '/sign-up/'; }
+function redirectToLogOut() {window.location.href = '/log-out'; }
+function redirectToAbout(){ window.location.href = '/about/'; }
 
 function darkMode(){
     document.body.style.backgroundColor = 'black';

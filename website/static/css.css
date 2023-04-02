@@ -17,6 +17,14 @@ nav {
     padding: 0.4rem;
 }
 
+.link {
+    text-decoration: none;
+}
+.link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .btn-dark-mode{
     position: absolute;
     right: 0;
@@ -32,14 +40,11 @@ button{
     padding: 5px;
     cursor: pointer;
 }
-button:hover{
-    background-color:lightgrey;
-}
 
 main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 25rem); /* Each column being 25rem, fit as many columns as possible within the window width */
-    grid-auto-rows: minmax(15rem, auto);
+    grid-template-columns: repeat(auto-fit, minmax(25rem,auto)); /* Fit 25rem columns then stretch to fill the whole width */
+    grid-auto-rows: minmax(15rem, auto); /* Each row is 15rem but can grow as the content gets bigger */
     gap: 1rem;
 }
 
@@ -53,8 +58,4 @@ main {
 
 .post-text {
     white-space: pre-line;
-}
-
-#update-form {
-    display: none;
 }
