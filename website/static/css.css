@@ -31,15 +31,14 @@ nav {
 button{
     padding: 5px;
     cursor: pointer;
-
 }
 button:hover{
-    background-color:antiquewhite;
+    background-color:lightgrey;
 }
 
 main {
     display: grid;
-    grid-template-columns: 28rem 28rem 28rem 28rem;
+    grid-template-columns: repeat(auto-fit, 25rem); /* Each column being 25rem, fit as many columns as possible within the window width */
     grid-auto-rows: minmax(15rem, auto);
     gap: 1rem;
 }
@@ -49,7 +48,7 @@ main {
     border-width: thin;
     border-radius: 5px;
     padding: 1rem; 
-    box-shadow: 5px 5px 10px lightgrey;
+    box-shadow: 5px 5px 5px lightgrey;
 }
 
 .post-text {
