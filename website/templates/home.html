@@ -25,7 +25,7 @@
 <div>
 <h3>Posts:</h3>
 {% if posts != None %}
-<span>
+<main>
     {% for post in posts %}
     <div class='post-wrapper'>
         <p class='post-text'>{{ post.text }}</p>
@@ -35,13 +35,13 @@
         <button type="button" onclick="showUpdateForm({{post.id}})">Edit</button>
         <button type="button" onclick="deletePost({{post.id}})">Remove</button>
         {% endif %}{% endif %}
-    </div><br>
+    </div>
     {% endfor %}
-</span>
+</main>
 {% else %}
 <h4>No posts to display</h4>
 {% endif %}
 </div>
 
-<img src="{{url_for('static', filename='shiba.jpg')}}" alt="shiba inu">
+<img src="{{url_for('static', filename='shiba.jpg')}}" alt="shiba inu" width="923" height="615">
 {% endblock %}

@@ -28,20 +28,32 @@ nav {
     border-radius: 5px;
 }
 
-.btn-post {
+button{
+    padding: 5px;
+    cursor: pointer;
 
 }
+button:hover{
+    background-color:antiquewhite;
+}
 
-.post-text {
-    white-space: pre-line;
+main {
+    display: grid;
+    grid-template-columns: 28rem 28rem 28rem 28rem;
+    grid-auto-rows: minmax(15rem, auto);
+    gap: 1rem;
 }
 
 .post-wrapper {
     border-style: solid;
     border-width: thin;
     border-radius: 5px;
-    width: 600px;
-    padding: 1em;
+    padding: 1rem; 
+    box-shadow: 5px 5px 10px lightgrey;
+}
+
+.post-text {
+    white-space: pre-line;
 }
 
 #update-form {
