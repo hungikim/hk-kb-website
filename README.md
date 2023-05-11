@@ -1,4 +1,5 @@
 # hk-kb-website
-Sample CRUD website project by Hungi Kim and Kibum Ryu
+Sample CRUD website project with Python, Flask, HTML, CSS & JavaScript
+Deployed on gns213.pythonanywhere.com using PythonAnywhere service
 
-Created with Flask, python, html, css, javascript
+Features: Signup, Sign in, Sign out, Read post, Crate pot, Update post, Delete post
